@@ -7,10 +7,17 @@ class User < ActiveRecord::Base
   					uniqueness: { case_sensitive: false }
   	has_secure_password
   	validates :password, presence: true, length: { minimum: 6 }
-  	enum sex: ['other', 'male', 'female', 'less', 'gay']
-  	validates :birthday, 
-				date: {
-					  after: Proc.new {Time.now - 125.years}, message: :after,
-					  before: Proc.new {Time.now}, message: :cannot_be_in_the_future
-				}
+  	enum gender: ['other', 'male', 'female', 'less', 'gay']
+  	validates :birthday, presence: true
+  	validate :check_birthday
+
+  	private
+
+  		def check_birthday
+          if !self.birthday.nil?    
+              if self.birthday > Time.now
+                errors.add(:birtday, "Cannot be in the future")
+              end
+            end
+        end
 end
