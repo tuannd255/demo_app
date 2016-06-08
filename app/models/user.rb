@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   					uniqueness: { case_sensitive: false }
   	has_secure_password
   	validates :password, presence: true, length: { minimum: 6 }
-  	enum sex: {'other', 'male', 'female', 'less', 'gay'}
+  	enum sex: ['other', 'male', 'female', 'less', 'gay']
   	validates :birthday, 
 				date: {
 					  after: Proc.new {Time.now - 125.years}, message: :after,
