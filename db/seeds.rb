@@ -15,7 +15,7 @@ User.create!(name:  "Example User",
   User.create!(name:  name,
                email: email,
                birthday: birthday,
-               title: =title,
+               title: title,
                password:              password,
                password_confirmation: password)
 end
