@@ -39,7 +39,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 24px;
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
@@ -243,6 +243,11 @@ input {
       padding: 5px 0;
     }
   }
+  .entry_title {
+    display: block;
+    margin-left: 60px;
+    font-weight: bold;
+  }
   .timestamp {
     color: $gray-light;
     display: block;
@@ -252,6 +257,12 @@ input {
     float: left;
     margin-right: 10px;
     margin-top: 5px;
+    border-radius: 50%;
+  }
+  .form-group {
+    .gravatar {
+      margin-left: 10px;
+    }
   }
 }
 
@@ -267,4 +278,8 @@ span.picture {
   input {
     border: 0;
   }
+}
+
+.field-title {
+  height: 25px;
 }

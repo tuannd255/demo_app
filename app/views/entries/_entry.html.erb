@@ -1,6 +1,7 @@
 <li id="entry-<%= entry.id %>">
   <%= link_to gravatar_for(entry.user, size: 50), entry.user %>
   <span class="user"><%= link_to entry.user.name, entry.user %></span>
+  <span class="entry_title"><%= entry.entry_title %></span>
   <span class="content">
   	<%= entry.content %>
   	<%= image_tag entry.picture.url if entry.picture? %>
@@ -11,6 +12,14 @@
       <%= link_to "delete", entry, method: :delete,
                                        data: { confirm: "You sure?" } %>
     <% end %>
+     <% unless entry.comments.nil? %>
+       <div id="comments-of-entry-<%= entry.id %>">
+          <%= render entry.comments %>
+      </div>
+     <% end %>
   </span>
+  <div class="comment_form">
+    <%= render 'shared/comment_form', entry: entry %>
+  </div>
 </li>
 <!-- time_ago_in_words : xem thoi gian bn phut truoc -->

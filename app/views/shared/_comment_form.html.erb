@@ -1,0 +1,15 @@
+<% if logged_in? %>
+  <%= form_for(comment = Comment.new, html: { multipart: true, class: "form-horizontal comment_form" }) do |f| %>
+    <%= f.hidden_field :entry_id, value: entry.id %>
+    <div class="form-group">
+    
+      <div class="col-md-1">
+          <%= gravatar_for current_user, size: 30 %>
+      </div>
+
+      <div class="col-md-10">
+        <%= f.text_field :content, placeholder: "Write a comment...", class: "form-control comment_field",id: "comment_content_#{entry.id}" %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
