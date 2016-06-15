@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
     @entry = Entry.find(@comment.entry_id)
     
-    if !current_user.following?(@entry.user)
+    if !current_user.following?(@entry.user) && !current_user?(@current_user)
       flash[:danger] = "Can not comment if you unfollow"
       redirect_to request.referrer
     elsif @comment.content.length > 140
