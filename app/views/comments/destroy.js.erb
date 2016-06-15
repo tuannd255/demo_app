@@ -1,0 +1,1 @@
+$("#comments-of-entry-<%= @entry.id %>").html("<%= j (render @entry.comments, entry: @entry, comment: @comment) %>");

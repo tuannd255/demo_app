@@ -8,12 +8,21 @@ class CommentsController < ApplicationController
     
     if !current_user.following?(@entry.user) && !current_user?(@entry.user)
       flash[:danger] = "Can not comment if you unfollow"
-      redirect_to request.referrer
+      respond_to do |format|
+        format.html {  redirect_to request.referrer }
+        format.js
+      end
     elsif @comment.content.length > 140
       flash[:danger] = "Comment is long"
-      redirect_to request.referrer
+      respond_to do |format|
+        format.html {  redirect_to request.referrer }
+        format.js
+      end
     elsif @comment.save
-      redirect_to request.referrer
+      respond_to do |format|
+        format.html {  redirect_to request.referrer }
+        format.js
+      end
     else
       flash[:danger] = "Can not comment blank"
       redirect_to request.referrer
@@ -21,8 +30,13 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @comment = current_user.comments.find(params[:id])
+    @entry = Entry.find(@comment.entry_id)
     @comment.destroy
-    redirect_to request.referrer || root_url
+    respond_to do |format|
+        format.html {  redirect_to request.referrer || root_url }
+        format.js
+      end
   end
 
   private

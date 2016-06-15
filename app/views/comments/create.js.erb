@@ -1,0 +1,2 @@
+$("#comments-of-entry-<%= @entry.id %>").html("<%= j (render @entry.comments) %>");
+$("#comment_content_<%= @entry.id %>").val('')

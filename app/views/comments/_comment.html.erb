@@ -13,7 +13,7 @@
   <div class=" col-md-2">
       <% if current_user?(comment.user) %>
       <%= link_to "delete", comment, method: :delete,
-                                       data: { confirm: "You sure?" } %>
+                                       data: { confirm: "You sure?" }, remote: true %>
     <% end %>
   </div>
 </div>
