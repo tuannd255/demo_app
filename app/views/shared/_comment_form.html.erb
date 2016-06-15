@@ -1,4 +1,4 @@
-<% if logged_in? %>
+<% if logged_in? && current_user.following?(@user) %>
   <%= form_for(comment = Comment.new, html: { multipart: true, class: "form-horizontal comment_form" }) do |f| %>
     <%= f.hidden_field :entry_id, value: entry.id %>
     <div class="form-group">

@@ -5,17 +5,23 @@ class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(comment_params)
     @entry = Entry.find(@comment.entry_id)
-    if @comment.save
-      # flash[:success] = "comment created!"
+    
+    if !current_user.following?(@entry.user)
+      flash[:danger] = "Can not comment if you unfollow"
+      redirect_to request.referrer
+    elsif @comment.content.length > 140
+      flash[:danger] = "Comment is long"
+      redirect_to request.referrer
+    elsif @comment.save
       redirect_to request.referrer
     else
-      render 'static_pages/home'
+      flash[:danger] = "Can not comment blank"
+      redirect_to request.referrer
     end
   end
 
   def destroy
     @comment.destroy
-    # flash[:success] = "comment deleted"
     redirect_to request.referrer || root_url
   end
 

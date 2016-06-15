@@ -16,7 +16,7 @@
       <%= f.select :gender, options_for_select(User.genders.map {|k, v| [k, k]}, @user.gender)%>
 
       <%= f.label :birthday %>
-      <%= f.date_select :birthday, {start_year: Date.today.year, end_year: Date.today.year - 100}, class: 'form-control form-date-and-time' %>
+      <%= f.date_field :birthday, class: 'form-control form-date-and-time' %>
 
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
